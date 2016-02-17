@@ -2,10 +2,10 @@ include $(MAKE_ROOT)/settings.mk
 
 PROTOBUF3_BUILD_DIR=build/$(RADIANT_BUILD_PLATFORM)
 
-ifeq ($(RADIANT_BUILD_PLATFORM),x86) 
-PROTOBUF3_MSBUILD_CONFIGURATION="|Win32"
+ifeq ($(RADIANT_BUILD_PLATFORM), x86)
+MSBUILD_PLATFORM=Win32
 else
-PROTOBUF3_MSBUILD_CONFIGURATION=
+MSBUILD_PLATFORM=x64
 endif
 
 .PHONY: default
@@ -13,8 +13,8 @@ default: configure protobuf3
 	echo done
 
 protobuf3: configure
-	$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=Release
-	$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=debug$(PROTOBUF3_MSBUILD_CONFIGURATION)
+	$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=release,platform=$(MSBUILD_PLATFORM)
+	$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=debug,platform=$(MSBUILD_PLATFORM)
 
 configure:
 	-mkdir -p $(PROTOBUF3_BUILD_DIR)
