@@ -13,8 +13,9 @@ default: configure protobuf3
 	echo done
 
 protobuf3: configure
-	$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=release,platform=$(MSBUILD_PLATFORM)
-	$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=debug,platform=$(MSBUILD_PLATFORM)
+	cmake --build $(PROTOBUF3_BUILD_DIR) 
+	#$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=release,platform=$(MSBUILD_PLATFORM)
+	#$(MSBUILD) $(PROTOBUF3_BUILD_DIR)/protobuf.sln -p:configuration=debug,platform=$(MSBUILD_PLATFORM)
 
 configure:
 	-mkdir -p $(PROTOBUF3_BUILD_DIR)

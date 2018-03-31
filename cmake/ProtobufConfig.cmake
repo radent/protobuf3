@@ -1,14 +1,24 @@
 SET(Protobuf_ROOT "${RADIANT_MODULE_ROOT}/protobuf3")
+IF(WIN32)
 SET(Protobuf_BIN "${Protobuf_ROOT}/build/${RADIANT_BUILD_PLATFORM}/release")
+ELSE()
+SET(Protobuf_BIN "${Protobuf_ROOT}/build/${RADIANT_BUILD_PLATFORM}")
+ENDIF()
 
 SET(PROTOBUF_INCLUDE_DIRS "${Protobuf_ROOT}/package/src")
 
-SET(PROTOBUF_PROTOC_EXECUTABLE ${Protobuf_BIN}/protoc.exe)
+SET(PROTOBUF_PROTOC_EXECUTABLE ${Protobuf_BIN}/protoc)
 MESSAGE("protoc is ${PROTOBUF_PROTOC_EXECUTABLE}")
 
+IF(WIN32)
 SET(PROTOBUF_LIBRARIES
     optimized ${Protobuf_BIN}/libprotobuf.lib
     debug     ${Protobuf_BIN}/libprotobuf.lib)
+ELSE()
+SET(PROTOBUF_LIBRARIES
+    optimized ${Protobuf_BIN}/libprotobuf.a
+    debug     ${Protobuf_BIN}/libprotobuf.a)
+ENDIF()
 
 SET(Protobuf_FOUND TRUE)
 
