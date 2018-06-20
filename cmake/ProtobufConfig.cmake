@@ -2,7 +2,7 @@ SET(Protobuf_ROOT "${RADIANT_MODULE_ROOT}/protobuf3")
 IF(WIN32)
 SET(Protobuf_BIN "${Protobuf_ROOT}/build/${RADIANT_BUILD_PLATFORM}/release")
 ELSE()
-SET(Protobuf_BIN "${Protobuf_ROOT}/install/${RADIANT_BUILD_PLATFORM}/release/bin")
+SET(Protobuf_BIN "${Protobuf_ROOT}/build/${RADIANT_BUILD_PLATFORM}/RelWithDebInfo")
 ENDIF()
 
 SET(PROTOBUF_INCLUDE_DIRS "${Protobuf_ROOT}/package/src")
