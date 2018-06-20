@@ -1,3 +1,4 @@
 .last_build*
 build/
+install/
 package/src/google/protobuf/compiler/js/well_known_types_embed.cc
